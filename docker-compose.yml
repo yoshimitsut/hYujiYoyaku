@@ -5,6 +5,7 @@ services:
     image: mysql:8.0
     container_name: mysql-hyuji
     restart: always
+    env_file: .env.production 
     environment: 
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_DATABASE: ${DB_NAME}
@@ -20,6 +21,7 @@ services:
     build: ./backend
     container_name: hyuji-backend
     restart: always
+    env_file: .env.production
     environment:
       - NODE_ENV=production
       - DB_HOST=db 
@@ -40,6 +42,7 @@ services:
     build: ./frontend
     container_name: hyuji-frontend
     restart: always
+    env_file: .env.production
     environment:
       - VIRTUAL_HOST=${FRONTEND_DOMAIN}
       - VIRTUAL_PORT=80
