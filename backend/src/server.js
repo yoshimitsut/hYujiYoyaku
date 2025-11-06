@@ -82,8 +82,8 @@ app.post('/api/reservar', async (req, res) => {
     for (const orderCake of newOrder.cakes) {
       // inserir na tabela order_cakes
       await conn.query(
-        'INSERT INTO order_cakes (order_id, cake_id, size, amount, message_cake, fruit_option) VALUES (?,?,?,?,?,?)',
-        [orderId, orderCake.cake_id, orderCake.size, orderCake.amount, orderCake.message_cake, orderCake.fruit_option]
+        'INSERT INTO order_cakes (order_id, cake_id, size, amount, message_cake) VALUES (?,?,?,?)',
+        [orderId, orderCake.cake_id, orderCake.size, orderCake.amount, orderCake.message_cake]
       );
       
       // atualizar estoque
@@ -113,8 +113,7 @@ app.post('/api/reservar', async (req, res) => {
     <h3 style="border-bottom: 2px solid #333; padding-bottom: 5px;">ご注文商品</h3>
             
     ${newOrder.cakes.map(cake => { 
-      const fruitPrice = cake.fruit_option === '有り' ? 648 : 0;
-      const cakeTotalPrice = (cake.price + fruitPrice) * cake.amount;
+      const cakeTotalPrice = (cake.price) * cake.amount;
 
       return `
         <table style="width: 400px; margin-bottom: 20px; border-collapse: collapse; background: #f9f9f9; border-radius: 8px; overflow: hidden;">
@@ -133,7 +132,6 @@ app.post('/api/reservar', async (req, res) => {
               <p style="margin: 5px 0;"><strong>個数:</strong> ${cake.amount}個</p>
               <p style="margin: 5px 0;"><strong>価格:</strong> ¥${Math.trunc(cake.price).toLocaleString("ja-JP")}</p>
               ${cake.message_cake ? `<p style="margin: 5px 0;"><strong>メッセージプレート:</strong> ${cake.message_cake || '無し'}</p>` : ''}
-              <p style="margin: 5px 0;"><strong>フルーツ盛り:</strong> ${cake.fruit_option === '有り' ? '有り ＋648円' : '無し'}
               <hr/>
               <strong>小計 ${(cakeTotalPrice).toLocaleString("ja-JP")}</strong>
               </td>
@@ -146,8 +144,7 @@ app.post('/api/reservar', async (req, res) => {
         <h3 style="margin: 0; color: #000;">合計金額</h3>
         <p style="font-size: 24px; font-weight: bold; margin: 10px 0 0 0;">
           ¥${Math.trunc(newOrder.cakes.reduce((total, cake) => {
-            const fruitPrice = cake.fruit_option === '有り' ? 648 : 0;
-            return total + ((cake.price + fruitPrice) * cake.amount)
+            return total + ((cake.price) * cake.amount)
             }, 0)).toLocaleString("ja-JP")
           }
           <span style="font-size: 14px; font-weight: normal;">(税込)</span>
@@ -259,9 +256,9 @@ app.put('/api/orders/:id_order', async (req, res) => {
     // 6. Inserir novos cakes
     for (const cake of cakes) {
       await conn.query(
-        `INSERT INTO order_cakes (order_id, cake_id, amount, size, message_cake, fruit_option)
-        VALUES (?, ?, ?, ?, ?, ?)`,
-        [id_order, cake.cake_id, cake.amount, cake.size, cake.message_cake || '', cake.fruit_option]
+        `INSERT INTO order_cakes (order_id, cake_id, amount, size, message_cake)
+        VALUES (?, ?, ?, ?, ?)`,
+        [id_order, cake.cake_id, cake.amount, cake.size, cake.message_cake || '']
       );
     }
 
@@ -380,8 +377,7 @@ app.put('/api/orders/:id_order', async (req, res) => {
     const qrCodeContentId = 'qrcode_order_id';
 
     const cakeListHtml = cakes.map(cake => {
-      const fruitPrice = cake.fruit_option === '有り' ? 648 : 0;
-      const cakeTotalPrice = (cake.price + fruitPrice) * cake.amount;
+      const cakeTotalPrice = (cake.price) * cake.amount;
  
       return `
         <table style="width: 400px; margin-bottom: 20px; border-collapse: collapse; background: #f9f9f9; border-radius: 8px; overflow: hidden;">
@@ -399,7 +395,6 @@ app.put('/api/orders/:id_order', async (req, res) => {
               <p style="margin: 5px 0;"><strong>サイズ:</strong> ${cake.size}</p>
               <p style="margin: 5px 0;"><strong>個数:</strong> ${cake.amount}個</p>
               <p style="margin: 5px 0;"><strong>価格:</strong> ¥${Math.trunc(cake.price).toLocaleString()}</p>
-              <p style="margin: 5px 0;"><strong>フルーツ盛り:</strong> ${cake.fruit_option === '有り' ? '有り ＋648円' : '無し'}
               ${cake.message_cake ? `<p style="margin: 5px 0;"><strong>メッセージプレート:</strong> ${cake.message_cake}</p>` : ''}
               <hr/>
               <strong>小計: ¥${Math.trunc(cakeTotalPrice).toLocaleString("ja-JP")}</strong>
@@ -410,8 +405,7 @@ app.put('/api/orders/:id_order', async (req, res) => {
 
     // Calcular total geral
     const totalGeral = cakes.reduce((total, cake) => {
-      const fruitPrice = cake.fruit_option === '有り' ? 648 : 0;
-      return total + ((cake.price + fruitPrice) * cake.amount);
+      return total + ((cake.price) * cake.amount);
     }, 0);
 
     const mailOptions = {
@@ -684,7 +678,6 @@ app.get('/api/list', async (req, res) => {
         oc.size,
         oc.amount,
         oc.message_cake,
-        oc.fruit_option,
         cs.price AS price,
         cs.stock AS stock
       FROM orders o
@@ -737,7 +730,6 @@ app.get('/api/list', async (req, res) => {
           size: row.size,
           amount: row.amount,
           message_cake: row.message_cake,
-          fruit_option: row.fruit_option,
           price: row.price,
           stock: row.stock
         });
