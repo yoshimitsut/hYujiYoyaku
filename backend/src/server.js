@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // const resend = new Resend(process.env.RESEND_API_KEY);
-const resend = new Resend("re_c8hnBVtD_JX19Sk4HsVZ7kayHwWFG16ZG");
+const resend = new Resend("re_ecUCJmMg_9n5TprDshhvgTGMWrcf7NJdz");
 
 app.use(cors());
 app.use(express.json());
