@@ -119,7 +119,7 @@ app.post('/api/reservar', async (req, res) => {
         <table style="width: 400px; margin-bottom: 20px; border-collapse: collapse; background: #f9f9f9; border-radius: 8px; overflow: hidden;">
           <tr>
             <td style="width: 120px; padding: 15px; vertical-align: top;">
-              <img src="https://yoyaku.beurre-mou.com/image/${cake.name.toLowerCase().replace(/\s+/g, '-')}.jpg" 
+              <img src="https://christmascake.h-yuji.com/image/${cake.name.toLowerCase().replace(/\s+/g, '-')}.jpg" 
                 alt="${cake.name}" 
                 width="100" 
                 style="border-radius: 6px; border: 1px solid #ddd;"
@@ -158,7 +158,7 @@ app.post('/api/reservar', async (req, res) => {
       <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 20px;">
         <p style="margin: 0; font-size: 14px;">上記の内容に相違がございましたら、お手数をお掛けしますが、</p>
         <p style="margin: 5px 0 0 0; font-size: 14px;">ご連絡をお願いいたします。</p>
-        <p style="margin: 10px 0 0 0;"><strong>パティスリーブール・ムー</strong></p>
+        <p style="margin: 10px 0 0 0;"><strong>Patisserie H.Yuji</strong></p>
         <p style="margin: 5px 0;">open 11:00 - 19:00</p>
         <p style="margin: 5px 0;">TEL: <a href="tel:080-9854-2849" style="color: #007bff; text-decoration: none;">080-9854-2849</a></p>
       </div>
@@ -167,8 +167,8 @@ app.post('/api/reservar', async (req, res) => {
     `;
     
     await resend.emails.send({
-      from: "パティスリーブール・ムー <order@yoyaku.beurre-mou.com>",
-      to: [newOrder.email, "beurre.mou.yoyaku@gmail.com"],
+      from: "Patisserie H.Yuji <order@yoyaku.h-yuji.com>",
+      to: [newOrder.email, "yoyaku.patisserie.h.yuji@gmail.com"],
       subject: `🎂 ご注文確認 - 受付番号 ${String(orderId).padStart(4,"0")}`,
       html: htmlContent,
       attachments: [{
@@ -211,9 +211,9 @@ app.put('/api/orders/:id_order', async (req, res) => {
     port: 587,
     secure: false,
     auth: {
-        user: "beurre.mou.yoyaku@gmail.com",
+        user: "yoyaku.patisserie.h.yuji@gmail.com",
         // user: "shimitsutanaka@gmail.com",
-        pass: "fqqjpmcjleidbzko"
+        pass: "dtuiccnedvrncsxq"
         // pass: "vmiepzoxltefekcr"
     }
   });
@@ -383,7 +383,7 @@ app.put('/api/orders/:id_order', async (req, res) => {
         <table style="width: 400px; margin-bottom: 20px; border-collapse: collapse; background: #f9f9f9; border-radius: 8px; overflow: hidden;">
           <tr>
             <td style="width: 120px; padding: 15px; vertical-align: top;">
-              <img src="https://yoyaku.beurre-mou.com/image/${cake.name.toLowerCase().replace(/\s+/g, '-')}.jpg" 
+              <img src="https://christmascake.h-yuji.com/image/${cake.name.toLowerCase().replace(/\s+/g, '-')}.jpg" 
                 alt="${cake.name}" 
                 width="100" 
                 style="border-radius: 6px; border: 1px solid #ddd;"
@@ -409,7 +409,7 @@ app.put('/api/orders/:id_order', async (req, res) => {
     }, 0);
 
     const mailOptions = {
-        from: '"パティスリーブール・ムー" <beurre.mou.yoyaku@gmail.com>', 
+        from: '"Patisserie H.Yuji" <order@yoyaku.h-yuji.com>', 
         to: email, 
         subject: `🎂 ご注文内容変更のお知らせ - 受付番号 ${String(id_order).padStart(4, "0")}`,
         html: `
@@ -440,7 +440,7 @@ app.put('/api/orders/:id_order', async (req, res) => {
             <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 20px;">
               <p style="margin: 0; font-size: 14px;">上記の内容に相違がございましたら、お手数をお掛けしますが、</p>
               <p style="margin: 5px 0 0 0; font-size: 14px;">ご連絡をお願いいたします。</p>
-              <p style="margin: 10px 0 0 0;"><strong>パティスリーブール・ムー</strong></p>
+              <p style="margin: 10px 0 0 0;"><strong>Patisserie H.Yuji</strong></p>
               <p style="margin: 5px 0;">open 11:00 - 19:00</p>
               <p style="margin: 5px 0;">TEL: <a href="tel:080-9854-2849" style="color: #007bff; text-decoration: none;">080-9854-2849</a></p>
             </div>
@@ -487,9 +487,9 @@ app.put('/api/reservar/:id_order', async (req, res) => {
     port: 587,
     secure: false,
     auth: {
-      user: "beurre.mou.yoyaku@gmail.com",
+      user: "yoyaku.patisserie.h.yuji@gmail.com",
       // user: "shimitsutanaka@gmail.com",
-        pass: "fqqjpmcjleidbzko"
+        pass: "dtuiccnedvrncsxq"
         // pass: "vmiepzoxltefekcr"
     }
   });
@@ -557,7 +557,7 @@ app.put('/api/reservar/:id_order', async (req, res) => {
         const formattedDate = formatDateJP(order.date);
 
         const mailOptions = {
-          from: '"パティスリーブール・ムー" <beurre.mou.yoyaku@gmail.com>',
+          from: '"Patisserie H.Yuji" <order@yoyaku.h-yuji.com>',
           to: order.email,
           subject: `ご注文のキャンセル完了 - 受付番号 ${String(id_order).padStart(4, "0")}`,
           html: `
@@ -601,7 +601,7 @@ app.put('/api/reservar/:id_order', async (req, res) => {
 
               <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center;">
                 <p style="margin: 0 0 10px 0; font-size: 14px; color: #666;">
-                  パティスリーブール・ムー<br>
+                  Patisserie H.Yuji<br>
                   OPEN 11:00 - 19:00<br>
                   TEL: <a href="tel:080-9854-2849" style="color: #007bff;">080-9854-2849</a>
                 </p>
@@ -627,32 +627,6 @@ app.put('/api/reservar/:id_order', async (req, res) => {
       for(const oc of orderCakes){
         await conn.query('UPDATE cake_sizes SET stock = stock - ? WHERE cake_id=? AND size=?', [oc.amount, oc.cake_id, oc.size]);
       }
-
-      // 📧 OPÇÃO: Também pode enviar email de reativação se quiser
-      // try {
-      //   const formattedDate = formatDateJP(order.date);
-        
-      //   const mailOptions = {
-      //     from: '"パティスリーブール・ムー" <shimitsutanaka@gmail.com>',
-      //     to: order.email,
-      //     subject: `✅ ご注文の再開 - 受付番号 ${String(id_order).padStart(4, "0")}`,
-      //     html: `
-      //       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      //         <h2 style="color: #28a745; text-align: center;">✅ 注文が再開されました</h2>
-      //         <p>${order.first_name} ${order.last_name}様</p>
-      //         <p>受付番号 <strong>${String(id_order).padStart(4, "0")}</strong> の注文が再開されました。</p>
-      //         <p><strong>受取予定日：</strong> ${formattedDate}</p>
-      //         <p><strong>受取時間：</strong> ${order.pickupHour}</p>
-      //         <p>引き続きよろしくお願いいたします。</p>
-      //       </div>
-      //     `
-      //   };
-        
-      //   const info = await transporter.sendMail(mailOptions);
-      //   console.log("📧 Email de reativação enviado:", info.messageId);
-      // } catch (emailError) {
-      //   console.error("❌ Erro ao enviar email de reativação:", emailError);
-      // }
     }
 
     await conn.commit();
