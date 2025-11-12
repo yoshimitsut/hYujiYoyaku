@@ -692,7 +692,6 @@ useEffect(() => {
                           </div>
                         </th>
                         <th>個数</th>
-                        <th>フルーツ盛り</th>
                         <th className='message-cell'>プレートメッセージ</th>
                         <th className='message-cell'>その他メッセージ</th>
                         <th>電話番号</th>

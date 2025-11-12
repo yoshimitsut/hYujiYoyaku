@@ -61,6 +61,7 @@ export type TimeslotSQL = {
   date: string;        // '2025-12-21T03:00:00.000Z'
   time: string;        // '11 ~ 13時'
   limit_slots: number;
+  available_slots: number;
 };
 // export type Slot = {
 //   time: string;
@@ -88,6 +89,7 @@ export type OptionType = {
 export type TimeOptionType = OptionType & {
   id: number;
   isDisabled?: boolean;
+  stock?: number;
 };
 
 export type MyContainerProps = {
