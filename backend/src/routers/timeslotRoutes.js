@@ -131,7 +131,7 @@ router.post('/times', async (req, res) => {
   } catch (err) {
     console.error('Erro ao adicionar horário:', err);
     
-    // Verifica se é erro de duplicata
+    // Verifica se é erro ede duplicata
     if (err.code === 'ER_DUP_ENTRY') {
       return res.status(400).json({ 
         success: false, 
