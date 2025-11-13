@@ -31,13 +31,25 @@ const diasABloquear = 3;
 const maxDate = endOfMonth(addDays(today, 90));
 
 const diasEspecificosPorMes = [
-  { day: 2, month: 10 }, { day: 3, month: 10 }, { day: 9, month: 10 }, { day: 10, month: 10 },
-  { day: 16, month: 10 }, { day: 17, month: 10 }, { day: 23, month: 10 }, { day: 24, month: 10 },
-  { day: 30, month: 11 }, { day: 1, month: 11 }, { day: 7, month: 11 }, { day: 8, month: 11 },
-  { day: 9, month: 11 }, { day: 13, month: 11 }, { day: 18, month: 11 }, { day: 19, month: 11 },
-  { day: 25, month: 12 }, { day: 26, month: 12 }, { day: 4, month: 12 }, { day: 5, month: 12 },
-  { day: 7, month: 12 }, { day: 8, month: 12 }, { day: 9, month: 12 }, { day: 13, month: 12 },
-  { day: 18, month: 12 }, { day: 19, month: 12 }, { day: 25, month: 12 }, { day: 26, month: 12 },
+  { day: 1, month: 11 }, 
+  { day: 7, month: 11 }, 
+  { day: 8, month: 11 },
+  { day: 9, month: 11 }, 
+  { day: 13, month: 11 }, 
+  { day: 18, month: 11 }, 
+  { day: 19, month: 11 },
+  { day: 25, month: 12 }, 
+  { day: 26, month: 12 }, 
+  { day: 4, month: 12 }, 
+  { day: 5, month: 12 },
+  { day: 7, month: 12 }, 
+  { day: 8, month: 12 }, 
+  { day: 9, month: 12 }, 
+  { day: 13, month: 12 },
+  { day: 18, month: 12 }, 
+  { day: 19, month: 12 }, 
+  { day: 25, month: 12 }, 
+  { day: 26, month: 12 },
 ];
 
 const gerarDiasBloqueadosInicio = () => {

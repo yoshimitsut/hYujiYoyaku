@@ -101,15 +101,36 @@ useEffect(() => {
   }, [today, diasABloquear]);
 
   // 🔹 FUNÇÃO SIMPLIFICADA - APENAS DATAS COM HORÁRIOS DISPONÍVEIS
-  const isDateAllowed = (date: Date) => {
-    const dateStr = format(date, 'yyyy-MM-dd');
-    const hasAvailableSlots = availableDates.includes(dateStr); // Verifica se tem slots no banco
-    const isNotBlocked = !excludedDates.some(d => isSameDay(d, date)); // Verifica se não está nos próximos 2 dias
-    
-    // Você não precisa mais do isNotBlocked aqui se usar 'excludeDates' no DatePicker,
-    // mas se quiser manter uma única função de filtro:
-    return hasAvailableSlots && isNotBlocked;
-  };
+  // 🔹 FUNÇÃO CORRIGIDA - BLOQUEIA DATAS ANTERIORES E VERIFICA DISPONIBILIDADE
+const isDateAllowed = (date: Date) => {
+  const dateStr = format(date, 'yyyy-MM-dd');
+  
+  // 1. Verificar se a data é anterior à data atual
+  const isPastDate = date < today;
+  if (isPastDate) {
+    console.log(`🚫 Data ${dateStr} é anterior à data atual`);
+    return false;
+  }
+  
+  // 2. Verificar se a data está bloqueada (próximos 2 dias)
+  const isBlocked = excludedDates.some(blockedDate => 
+    isSameDay(blockedDate, date)
+  );
+  if (isBlocked) {
+    console.log(`🚫 Data ${dateStr} está bloqueada (próximos 2 dias)`);
+    return false;
+  }
+  
+  // 3. Verificar se a data tem horários disponíveis
+  const hasAvailableSlots = availableDates.includes(dateStr);
+  if (!hasAvailableSlots) {
+    console.log(`❌ Data ${dateStr} não tem horários disponíveis no banco`);
+    return false;
+  }
+  
+  console.log(`✅ Data ${dateStr} está disponível`);
+  return true;
+};
 
   // 🔹 ATUALIZAR HORÁRIOS QUANDO A DATA MUDAR
   useEffect(() => {
