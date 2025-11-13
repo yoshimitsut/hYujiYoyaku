@@ -69,7 +69,7 @@ async function sendNewOrderConfirmation(newOrder, orderId) {
             return `
                 <table style="width: 400px; margin-bottom: 20px; border-collapse: collapse; background: #f9f9f9; border-radius: 8px; overflow: hidden;">
                     <tr>
-                        <td style="width: 120px; padding: 15px; vertical-align: top;">
+                        <td style="width: 120px; padding: padding: 15px 0 15px 15px; vertical-align: top;">
                             <img src="${process.env.EMAIL_USER_SITE}/image/${cake.name.toLowerCase().replace(/\s+/g, '-')}.jpg" 
                                 alt="${cake.name}" 
                                 width="100" 
@@ -77,7 +77,7 @@ async function sendNewOrderConfirmation(newOrder, orderId) {
                                 onerror="this.style.display='none'">
                         </td>
                         
-                        <td style="padding: 15px; vertical-align: top;">
+                        <td style="padding: padding: 15px 15px 15px 5px; vertical-align: top;">
                             <h3 style="margin: 0 0 10px 0;">${cake.name}</h3>
                             ${cake.size ? `<p style="margin: 5px 0;"><strong>サイズ:</strong> ${cake.size}</p>` : ''}
                             <p style="margin: 5px 0;"><strong>個数:</strong> ${cake.amount}個</p>
@@ -117,7 +117,7 @@ async function sendNewOrderConfirmation(newOrder, orderId) {
       from: `"${EMAIL_CONFIG.fromName}" <${EMAIL_CONFIG.fromResend}>`,
       to: [
         newOrder.email, 
-        "shimitsutanaka@gmail.com" // Seu email de notificação
+        EMAIL_CONFIG.fromGmail
       ],
       subject: `🎂 ご注文確認 - 受付番号 ${String(orderId).padStart(4,"0")}`,
       html: htmlContent,
@@ -144,14 +144,14 @@ async function sendOrderUpdateNotification(orderData) {
         return `
             <table style="width: 400px; margin-bottom: 20px; border-collapse: collapse; background: #f9f9f9; border-radius: 8px; overflow: hidden;">
                 <tr>
-                    <td style="width: 120px; padding: 15px; vertical-align: top;">
+                    <td style="width: 120px; padding: 15px 0 15px 15px; vertical-align: top;">
                         <img src="${process.env.EMAIL_USER_SITE}/image/${cake.name.toLowerCase().replace(/\s+/g, '-')}.jpg" 
                             alt="${cake.name}" 
                             width="100" 
                             style="border-radius: 6px; border: 1px solid #ddd;"
                             onerror="this.style.display='none'">
                     </td>
-                    <td style="padding: 15px; vertical-align: top;">
+                    <td style="padding: 15px 15px 15px 5px; vertical-align: top;">
                         <h3 style="margin: 0 0 10px 0;">${cake.name}</h3>
                         <p style="margin: 5px 0;"><strong>サイズ:</strong> ${cake.size}</p>
                         <p style="margin: 5px 0;"><strong>個数:</strong> ${cake.amount}個</p>
@@ -172,7 +172,7 @@ async function sendOrderUpdateNotification(orderData) {
         from: `"Patisserie H.Yuji" <${EMAIL_CONFIG.fromResend}>`,
         to: [
             orderData.email, 
-            "shimitsutanaka@gmail.com"
+            EMAIL_CONFIG.fromGmail
         ],  
         subject: `🎂 ご注文内容変更のお知らせ - 受付番号 ${String(orderData.id_order).padStart(4, "0")}`,
         html: `
@@ -245,7 +245,7 @@ async function sendCancellationNotification(order, cakesDetails) {
         from: `"Patisserie H.Yuji" <${EMAIL_CONFIG.fromResend}>`,
         to: [
             order.email,
-            "shimitsutanaka@gmail.com"
+            EMAIL_CONFIG.fromName
         ],
         subject: `ご注文のキャンセル完了 - 受付番号 ${String(orderId).padStart(4, "0")}`,
         html: `
