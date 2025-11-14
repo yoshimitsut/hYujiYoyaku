@@ -100,6 +100,7 @@ async function sendNewOrderConfirmation(newOrder, orderId) {
         
         <div style="text-align: center; margin: 20px 0;">
             <p><strong>受付用QRコード</strong></p>
+            <p><strong style="color: red;">受け取り時にご提示ください。</strong></p>
             <img src="cid:${qrCodeContentId}" width="300" style="display: block; margin: 0 auto;" />
         </div>
         <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 20px;">
@@ -196,6 +197,7 @@ async function sendOrderUpdateNotification(orderData) {
 
                 <div style="text-align: center; margin: 20px 0;">
                     <p><strong>受付用QRコード</strong></p>
+                    <p><strong style="color: red;">受け取り時にご提示ください。</strong></p>
                     <img src="cid:${qrCodeContentId}" width="300" style="display: block; margin: 0 auto;" />
                 </div>
 
