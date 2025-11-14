@@ -191,6 +191,7 @@ router.get('/list', async (req, res) => {
     let query = `
       SELECT 
         o.*, 
+        o.created_at as date_order,
         oc.id AS order_cake_id,
         oc.cake_id,
         c.name AS cake_name,

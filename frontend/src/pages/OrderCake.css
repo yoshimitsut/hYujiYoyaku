@@ -352,6 +352,9 @@ body {
     box-sizing: border-box;
   }
 
+  .css-1qdu2hq-control{
+    background-color: white;
+  }
 
   .input-group label {
     position: absolute;
