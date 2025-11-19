@@ -300,14 +300,14 @@ export default function SalesOrder() {
     
     // Criar array de bolos ordenados por ID
     const orderedCakes = allCakes
-      .filter(cake => {
-        // Incluir apenas bolos que existem no summary OU todos os bolos
-        const cakeName = cake.name.trim();
-        return activeMonthData.summary[cakeName] !== undefined;
-      })
+      // .filter(cake => {
+      //   // Incluir apenas bolos que existem no summary OU todos os bolos
+      //   const cakeName = cake.name.trim();
+      //   return activeMonthData.summary[cakeName] !== undefined;
+      // })
       .sort((a, b) => a.id - b.id); // Ordenar por ID
     
-    console.log("Bolos ordenados por ID:", orderedCakes);
+    // console.log("Bolos ordenados por ID:", orderedCakes);
     return orderedCakes;
   }, [activeMonthData, allCakes]);
 
