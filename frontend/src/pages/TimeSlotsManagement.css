@@ -740,3 +740,212 @@
     padding: 20px;
   }
 }
+
+/* ============================================= */
+/* CORREÇÃO PARA OS PEDAÇOS ROSAS NO CHROME */
+/* ============================================= */
+
+/* Remove completamente os outlines padrão do Chrome */
+button:focus,
+button:focus-visible,
+button:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove highlight do Chrome para mobile */
+button {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+}
+
+/* Remove estilos de foco específicos do Chrome */
+button::-moz-focus-inner {
+  border: 0 !important;
+}
+
+/* Estilos específicos para cada tipo de botão */
+.calendar-day:focus,
+.calendar-day:active,
+.calendar-day:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #dee2e6 !important;
+}
+
+.calendar-day.selected:focus,
+.calendar-day.selected:active {
+  border-color: #007bff !important;
+}
+
+.timeslot-batch-creator__tab:focus,
+.timeslot-batch-creator__tab:active,
+.timeslot-batch-creator__tab:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: #e9ecef !important;
+}
+
+.timeslot-batch-creator__tab--active:focus,
+.timeslot-batch-creator__tab--active:active {
+  background-color: white !important;
+  border-bottom: 3px solid #007bff !important;
+}
+
+.timeslot-batch-creator__time-button:focus,
+.timeslot-batch-creator__time-button:active,
+.timeslot-batch-creator__time-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #ddd !important;
+}
+
+.timeslot-batch-creator__time-button--selected:focus,
+.timeslot-batch-creator__time-button--selected:active {
+  border-color: #007bff !important;
+}
+
+.timeslot-batch-creator__bulk-button:focus,
+.timeslot-batch-creator__bulk-button:active,
+.timeslot-batch-creator__bulk-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.timeslot-batch-creator__submit-button:focus,
+.timeslot-batch-creator__submit-button:active,
+.timeslot-batch-creator__submit-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.timeslot-batch-creator__add-button:focus,
+.timeslot-batch-creator__add-button:active,
+.timeslot-batch-creator__add-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.timeslot-batch-creator__delete-time-button:focus,
+.timeslot-batch-creator__delete-time-button:active,
+.timeslot-batch-creator__delete-time-button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Para o botão de voltar específico */
+.btn-back:focus,
+.btn-back:active,
+.btn-back:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.table-order-actions-header:focus,
+.table-order-actions-header:active,
+.table-order-actions-header:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove qualquer estilo de seleção estranho */
+*::selection {
+  background: rgba(79, 70, 229, 0.1) !important;
+}
+
+*::-moz-selection {
+  background: rgba(79, 70, 229, 0.1) !important;
+}
+
+/* Remove highlight do Chrome para elementos interativos */
+.calendar-header button:focus,
+.calendar-header button:active,
+.calendar-header button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ============================================= */
+/* ESTILOS DE FOCUS VISIBLE PARA ACESSIBILIDADE */
+/* ============================================= */
+
+/* Apenas para navegação por teclado (acessibilidade) */
+@media (pointer: fine) {
+  button:focus-visible {
+    outline: 2px solid #4f46e5 !important;
+    outline-offset: 2px !important;
+  }
+  
+  .calendar-day:focus-visible {
+    outline: 2px solid #4f46e5 !important;
+    outline-offset: 1px !important;
+  }
+  
+  .timeslot-batch-creator__tab:focus-visible {
+    outline: 2px solid #4f46e5 !important;
+    outline-offset: 2px !important;
+  }
+  
+  .timeslot-batch-creator__time-button:focus-visible {
+    outline: 2px solid #4f46e5 !important;
+    outline-offset: 1px !important;
+  }
+}
+
+/* ============================================= */
+/* CORREÇÃO ESPECÍFICA PARA CHROME MOBILE */
+/* ============================================= */
+
+@media (max-width: 768px) {
+  button,
+  .calendar-day,
+  .timeslot-batch-creator__tab {
+    -webkit-tap-highlight-color: transparent !important;
+    tap-highlight-color: transparent !important;
+  }
+  
+  /* Remove o delay de highlight no iOS */
+  button {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+  }
+}
+
+/* ============================================= */
+/* GARANTIR QUE NÃO HAJA CONFLITOS COM ESTILOS EXISTENTES */
+/* ============================================= */
+
+/* Sobrescreve qualquer estilo problemático */
+.timeslot-batch-creator *:focus {
+  outline: none !important;
+}
+
+.timeslot-batch-creator *:active {
+  outline: none !important;
+}
+
+/* Remove qualquer background estranho durante o clique */
+button:active {
+  transform: translateY(0) !important;
+}
+
+/* Garante que os estados hover não interfiram */
+.calendar-day:hover:active {
+  background: #f8f9fa !important;
+}
+
+.calendar-day.selected:hover:active {
+  background: #007bff !important;
+}
+
+.timeslot-batch-creator__time-button:hover:active {
+  background: #fff !important;
+}
+
+.timeslot-batch-creator__time-button--selected:hover:active {
+  background: #007bff !important;
+}
