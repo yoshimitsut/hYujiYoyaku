@@ -108,7 +108,7 @@ async function sendNewOrderConfirmation(newOrder, orderId) {
             <p style="margin: 5px 0 0 0; font-size: 14px;">ご連絡をお願いいたします。</p>
             <p style="margin: 10px 0 0 0;"><strong>Patisserie H.Yuji</strong></p>
             <p style="margin: 5px 0;">open 11:00 - 19:00</p>
-            <p style="margin: 5px 0;">TEL: <a href="tel:080-9854-2849" style="color: #007bff; text-decoration: none;">080-9854-2849</a></p>
+            <p style="margin: 5px 0;">TEL: <a href="tel:098-917-2011" style="color: #007bff; text-decoration: none;">098-917-2011</a></p>
         </div>
         <p style="text-align: center; margin-top: 20px; font-style: italic;">宜しくお願いいたします。</p>
     </div>
@@ -206,7 +206,7 @@ async function sendOrderUpdateNotification(orderData) {
                     <p style="margin: 5px 0 0 0; font-size: 14px;">ご連絡をお願いいたします。</p>
                     <p style="margin: 10px 0 0 0;"><strong>Patisserie H.Yuji</strong></p>
                     <p style="margin: 5px 0;">open 11:00 - 19:00</p>
-                    <p style="margin: 5px 0;">TEL: <a href="tel:080-9854-2849" style="color: #007bff; text-decoration: none;">080-9854-2849</a></p>
+                    <p style="margin: 5px 0;">TEL: <a href="tel:098-917-2011" style="color: #007bff; text-decoration: none;">098-917-2011</a></p>
                 </div>
                 
                 <p style="text-align: center; margin-top: 20px; font-style: italic;">宜しくお願いいたします。</p>
@@ -293,7 +293,7 @@ async function sendCancellationNotification(order, cakesDetails) {
                     <p style="margin: 0 0 10px 0; font-size: 14px; color: #666;">
                         Patisserie H.Yuji<br>
                         OPEN 11:00 - 19:00<br>
-                        TEL: <a href="tel:080-9854-2849" style="color: #007bff;">080-9854-2849</a>
+                        TEL: <a href="tel:098-917-2011" style="color: #007bff;">098-917-2011</a>
                     </p>
                     <p style="margin: 0; font-size: 12px; color: #999;">
                         このメールは自動送信されています
